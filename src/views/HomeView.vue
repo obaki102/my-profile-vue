@@ -1,15 +1,15 @@
 
 <template>
-  <main class="container">
-    <section class="one">
-      <h1>About Me</h1>
+  <main>
+    <section class="one flex">
+    
     </section>
-    <section class="two">
-      <h1>Projects</h1>
+    <section class="flex justify-center">
+      <h1 class="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"> Projects</h1>
       <ProjectView></ProjectView>
     </section>
     <section class="three">
-      <h1>????</h1>
+      <h1 class="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"> ????</h1>
     </section>
   </main>
 </template>
@@ -26,7 +26,6 @@ import ProjectView from './ProjectView.vue'
 }
 
 section {
-  width: 100%;
   height: 100vh;
   background-size: cover;
   scroll-snap-align: start;
@@ -45,9 +44,7 @@ section {
   background-color: rgb(29, 29, 61);
 }
 
-.two {
-  background-color: rgb(21, 23, 34);
-}
+
 
 .three {
   background-color: rgb(28, 28, 141);
