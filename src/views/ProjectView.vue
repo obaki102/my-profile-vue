@@ -41,7 +41,7 @@ imports
 */
 import type { Project } from '@/models/projects'
 import { onMounted, ref } from 'vue'
-import { getProjects } from '@/services/getProjects'
+import { getCacheData } from '@/services/getProjects'
 
 /*
 projects
@@ -52,9 +52,8 @@ let isSuccess: boolean = false;
 
 
 onMounted(async () => {
-  const { projects } = await getProjects()
+  const projects = await getCacheData('projects')
   data.value = projects
-
 })
 
 
