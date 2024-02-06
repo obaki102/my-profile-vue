@@ -1,11 +1,10 @@
-
 <template>
   <main>
     <section class="one flex">
-
+      <AboutMeView />
     </section>
-    <section class="flex xl:flex-row max-lg:flex-col">
-      <ProjectView></ProjectView>
+    <section>
+      <ProjectView />
     </section>
     <section class="three">
       <h1
@@ -16,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import AboutMeView from './AboutMeView.vue'
 import ProjectView from './ProjectView.vue'
 </script>
 <style>
@@ -42,11 +42,12 @@ section {
 }
 
 .one {
-  background-color: rgb(29, 29, 61);
+  background-color: rgb(18, 18, 18);
 }
 
 
 
 .three {
-  background-color: rgb(28, 28, 141);
-}</style>
+  background-color: rgb(29, 29, 61);
+}
+</style>
