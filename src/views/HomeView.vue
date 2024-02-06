@@ -2,14 +2,15 @@
 <template>
   <main>
     <section class="one flex">
-    
+
     </section>
-    <section class="flex justify-center">
-      <h1 class="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"> Projects</h1>
+    <section class="flex xl:flex-row max-lg:flex-col">
       <ProjectView></ProjectView>
     </section>
     <section class="three">
-      <h1 class="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"> ????</h1>
+      <h1
+        class="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        ????</h1>
     </section>
   </main>
 </template>
@@ -48,5 +49,4 @@ section {
 
 .three {
   background-color: rgb(28, 28, 141);
-}
-</style>
+}</style>
