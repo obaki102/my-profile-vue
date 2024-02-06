@@ -1,4 +1,3 @@
-
 export  interface Project  {
   id: number
   node_id: string
@@ -58,6 +57,7 @@ export  interface Project  {
   stargazers_count: number
   watchers_count: number
   language?: string
+  languages: string[]
   has_issues: boolean
   has_projects: boolean
   has_downloads: boolean

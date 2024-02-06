@@ -14,12 +14,14 @@
         </p>
       </div>
       <div class="max-lg:invisible  px-6 pt-4 pb-2 ">
-        <span v-for="topic in proj.topics.filter((item) => item !== 'show')" :key="proj.id"
-          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ topic
+        <span v-for="lang in proj.languages" :key="proj.id"
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ lang
           }}</span>
       </div>
     </div>
   </div>
+
+  
 </template>
 
 <script setup lang="ts">
@@ -28,7 +30,7 @@ imports
 */
 import type { Project } from '@/models/projects'
 import { onMounted, ref } from 'vue'
-import { api } from '@/services/api'
+import { getProjects } from '@/services/getProjects'
 
 /*
 projects
@@ -38,7 +40,7 @@ const data = ref([] as Project[])
 
 
 onMounted(async () => {
-  const { projects } = await api()
+  const { projects } = await getProjects()
   data.value = projects.filter((item) => item.topics.includes('show'))
 })
 
@@ -47,3 +49,4 @@ onMounted(async () => {
 
 </script>
 
+@/types/projects@/services/getProjects
