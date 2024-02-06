@@ -4,12 +4,13 @@
     Projects</h1>
   <div class="flex xl:flex-row max-lg:flex-col gap-4 items-center" v-for="proj in data" :key="proj.id">
     <div class="h-96 bg-gray-800 p-6 rounded-lg shadow-lg m-4">
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2 font-mono text-white "> <a :href="proj.html_url"
-            class="no-underline hover:underline"> {{ proj.name
+      <div class="md:shrink-0 px-6 py-4">
+        
+        <div class="font-bold text-xl mb-2 font-mono text-white"> <a :href="proj.html_url"
+            class="no-underline hover:underline ml-2"> {{ proj.name
             }}</a></div>
         <hr class="border-b border-gray-700 my-4">
-        <p class="font-mono text-white text-sm overflow-x-auto text-justify">
+        <p class="text-ellipsis overflow-hidden  font-mono text-white text-sm">
           {{ proj.description }}
         </p>
       </div>
@@ -21,7 +22,6 @@
     </div>
   </div>
 
-  
 </template>
 
 <script setup lang="ts">
@@ -37,16 +37,16 @@ projects
 */
 
 const data = ref([] as Project[])
+let isSuccess: boolean = false;
 
 
 onMounted(async () => {
   const { projects } = await getProjects()
-  data.value = projects.filter((item) => item.topics.includes('show'))
+  data.value = projects
+
 })
 
 
 
 
 </script>
-
-@/types/projects@/services/getProjects
