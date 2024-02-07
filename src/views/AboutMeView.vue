@@ -15,7 +15,6 @@
         src="/src/assets/PowerAutomate_scalable.svg" title="Power Automate" />
       <img class="object-cover h-10 w-10 transition duration-300 hover:translate-x-2"
         src="/src/assets/PowerBI_scalable.svg" title="Power BI" />
-
     </div>
   </div>
 </template>

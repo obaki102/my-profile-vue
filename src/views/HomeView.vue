@@ -1,14 +1,15 @@
 <template>
   <main>
     <div class="flex content-center justify-end about p-10">
-      <div>
-        <a class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
-          @click="scrollTo(projects)">Projects</a>
-      </div>
-      <div class="">
-        <a class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block rounded hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
-          @click="scrollTo(contacts)">Contacts</a>
-      </div>
+      <button
+        class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
+        @click="scrollTo(projects)">Projects</button>
+
+      <button
+        class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block rounded hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
+        @click="scrollTo(contacts)">Contacts</button>
+
+
     </div>
     <section class="about  flex" ref="about">
       <AboutMeView />
@@ -18,8 +19,8 @@
     </section>
     <section class="contacts" ref="contacts">
       <h1
-        class="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-        ????</h1>
+        class="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white">
+        Coming soon</h1>
     </section>
   </main>
 </template>

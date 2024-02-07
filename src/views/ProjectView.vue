@@ -1,11 +1,11 @@
 <template>
-  <div class="p-20">
+  <div class="m-20">
     <h1
-      class="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-800 md:text-5xl lg:text-6xl dark:text-white">
+      class="mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-800 md:text-5xl lg:text-6xl dark:text-white">
       Projects</h1>
-    <div class="flex content-center items-center xl:flex-row max-lg:flex-col">
+    <div class="flex content-center xl:flex-row max-lg:flex-col max-lg:flex-row">
       <div class="flex gap-4 transition duration-300 hover:scale-105" v-for="proj in data" :key="proj.id">
-        <div class="h-96 bg-gray-800 p-6 rounded-lg shadow-lg m-4">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg m-4">
           <div class="px-6 py-4">
             <div class="font-bold text-xl mb-2 font-mono text-white">
               <a :href="proj.html_url" class="no-underline hover:underline ml-2 text-ellipsis overflow-hidden">
@@ -25,12 +25,11 @@
               </button>
             </a>
           </div>
-          <div class="max-2xl:invisible  px-6 pt-4 pb-2 ">
+          <div class="px-6 pt-4 pb-2 ">
             <span v-for="lang in proj.languages" :key="proj.id"
               class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{
                 lang
               }}</span>
-
           </div>
         </div>
       </div>
