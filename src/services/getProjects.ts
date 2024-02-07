@@ -20,7 +20,7 @@ async function getLanguagesForProject(proj: Project): Promise<string[]> {
 export async function getCacheData(key: string): Promise<Project[]> {
 
   const isDataStale = (timestamp: number): boolean => {
-    const oneDayInMillis = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+    const oneDayInMillis = 24 * 60 * 60 * 1000; // 1 day 
     const currentTime = new Date().getTime();
     return currentTime - timestamp > oneDayInMillis;
   };
