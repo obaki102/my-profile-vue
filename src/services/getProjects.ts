@@ -5,9 +5,9 @@ async function getProjects() {
   const { onFetchResponse, onFetchError, data } = await useFetch('https://api.github.com/users/obaki102/repos').get().json();
   const fethData = data.value as Project[];
   const projects = fethData.filter((item) => item.topics.includes('show'));
-  await Promise.all(projects.map(async (proj) => {
-    proj.languages = await getLanguagesForProject(proj);
-  }));
+  // await Promise.all(projects.map(async (proj) => {
+  //   proj.languages = await getLanguagesForProject(proj);
+  // }));
 
   return { onFetchResponse, onFetchError, projects };
 }
