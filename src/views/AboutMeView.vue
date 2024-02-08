@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col  max-lg:m-10 p-20">
+  <div class="flex flex-col p-20">
     <div class="text-4xl font-extrabold leading-none tracking-tight text-white m-20">
       <p>Hi 👋, I'm Josh</p>
       <p>Just a regular .NET developer who loves exploring new stuff.</p>
