@@ -3,20 +3,10 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
-
   <RouterView />
+  <div class="flex bg-gray-800 p-5 h-14">
+    <span class="ml-10 font-mono text-white text-sm">©joshuajpiluden {{ new Date().getFullYear() }}</span>
+  </div>
 </template>
 
 <style scoped>

@@ -1,7 +1,7 @@
 <template>
   <div class="mt-10 ml-20">
     <h1
-      class="ml-10 mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-800 md:text-5xl lg:text-6xl dark:text-white">
+      class="ml-10 mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
       Projects</h1>
   </div>
   <div class="flex flex-wrap justify-center mt-10 ml-20 mb-10 mr-20">
@@ -48,9 +48,9 @@
             </a>
           </div>
         </div>
-        <hr class="border-b border-gray-700 my-2">
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="text-ellipsis overflow-hidden  font-mono text-white text-sm">
+        <hr class="border-b border-gray-700">
+        <div class="flex flex-col justify-between flex-grow my-4">
+          <p class="text-ellipsis overflow-hidden font-mono text-white text-sm text-justify">
             {{ proj.description }}
           </p>
           <a :href="proj.homepage" class="mt-5 text-white hover:text-blue-500 inline-flex items-center"
@@ -64,7 +64,7 @@
       </div>
     </div>
   </div>
- 
+
 </template>
 
 <script setup lang="ts">
