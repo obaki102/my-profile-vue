@@ -1,7 +1,7 @@
 <template>
   <div class="mt-10 ml-20">
     <h1
-      class="ml-10 mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+      class="mb-10 text-4xl font-extrabold leading-none tracking-tight text-white">
       Projects</h1>
   </div>
   <div class="flex flex-wrap justify-center mt-10 ml-20 mb-10 mr-20">

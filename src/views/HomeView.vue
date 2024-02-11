@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="flex content-center justify-end about p-10">
+    <div class="flex content-center justify-end about p-10 main">
       <button
         class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
         @click="scrollTo(projects)">Projects</button>
@@ -8,18 +8,19 @@
       <button
         class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block rounded hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
         @click="scrollTo(contact)">Contact</button>
-
-
     </div>
-    <section class="section about flex " ref="about">
-      <AboutMeView />
-    </section>
-    <section class="section2" ref="projects">
-      <ProjectView />
-    </section>
-    <section class="section2 contact" ref="contact">
-      <ContactView />
-    </section>
+
+    <div class="flex flex-col items-center main">
+      <section class="section about flex " ref="about">
+        <AboutMeView />
+      </section>
+      <section class="section2" ref="projects">
+        <ProjectView />
+      </section>
+      <section class="section2 contact" ref="contact">
+        <ContactView />
+      </section>
+    </div>
   </main>
 </template>
 
@@ -66,11 +67,7 @@ function scrollTo(view: HTMLElement | null) {
   scroll-snap-type: y mandatory;
 }
 
-.about {
-  background-color: rgb(18, 18, 18);
-}
-
-.contact {
+.main {
   background-color: rgb(13, 17, 23);
 }
 </style>
