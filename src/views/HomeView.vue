@@ -26,16 +26,16 @@
 
 <script setup lang="ts">
 // Imports
-import AboutMeView from './AboutMeView.vue'
+import AboutMeView from './AboutMeView.vue';
 import ContactView from './ContactView.vue';
-import ProjectView from './ProjectView.vue'
-import { ref, type Ref } from 'vue'
+import ProjectView from './ProjectView.vue';
+import { ref, type Ref } from 'vue';
 
-const [about, projects, contact] = [ref<HTMLElement | null>(null), ref<HTMLElement | null>(null), ref<HTMLElement | null>(null)]
+const [about, projects, contact] = [ref<HTMLElement | null>(null), ref<HTMLElement | null>(null), ref<HTMLElement | null>(null)];
 
 function scrollTo(view: HTMLElement | null) {
   if (view)
-    view.scrollIntoView({ behavior: 'smooth' })
+    view.scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 
