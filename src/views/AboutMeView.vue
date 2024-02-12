@@ -4,7 +4,7 @@
       <p>Hi 👋, I'm Josh</p>
       <p>Just a regular .NET developer who loves exploring new stuff.</p>
     </div>
-    <div class="flex  ml-20">
+    <div class="flex  flex-wrap ml-20">
       <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/c-sharp.svg"
         title="C#" />
       <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/azure.svg"

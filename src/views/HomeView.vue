@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <div class="flex content-center justify-end about p-10 main">
+  <main class="main">
+    <div class="flex content-center justify-end about p-10">
       <button
         class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
         @click="scrollTo(projects)">Projects</button>
