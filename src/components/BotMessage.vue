@@ -12,15 +12,12 @@
 
 <script setup lang="ts">
 import type { ChatMessage } from '@/models/chatMessage';
+import { formatTimestamp } from '../services/utilities'
 
 defineProps<{
   botMessage: ChatMessage;
 }>();
 
-const formatTimestamp = (timestamp: Date) => {
-  const minutesAgo = Math.floor((Date.now() - timestamp.getTime()) / (1000 * 60));
-  return `${minutesAgo} min ago`;
-};
 </script>
 
 <style scoped>
