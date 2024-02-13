@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap justify-center">
+  <div class="flex flex-wrap justify-center ">
     <h1
       class="mb-10 text-4xl font-extrabold leading-none tracking-tight text-white">
       Projects</h1>

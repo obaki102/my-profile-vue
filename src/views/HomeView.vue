@@ -14,7 +14,7 @@
       <section class="section about flex " ref="about">
         <AboutMeView />
       </section>
-      <section class="section2" ref="projects">
+      <section class="section2 container no-scrollbar" ref="projects">
         <ProjectView />
       </section>
       <section class="section2 contact" ref="contact">
