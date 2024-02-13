@@ -20,7 +20,7 @@
       <section class="section2 contact" ref="contact">
         <ContactView />
       </section>
-      <Chat />
+      <ChatView />
     </div>
     <div class="p-5">
       <hr class="border-b border-gray-700 mb-2">
@@ -35,7 +35,7 @@
 import AboutMeView from './AboutMeView.vue';
 import ContactView from './ContactView.vue';
 import ProjectView from './ProjectView.vue';
-import Chat from '../components/Chat.vue';
+import ChatView from './ChatView.vue';
 import { ref } from 'vue';
 
 const [about, projects, contact] = [ref<HTMLElement | null>(null), ref<HTMLElement | null>(null), ref<HTMLElement | null>(null)];
