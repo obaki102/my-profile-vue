@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <div class="flex content-center justify-end about p-10 main">
+  <main class="main">
+    <div class="flex content-center justify-end about p-10">
       <button
         class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
         @click="scrollTo(projects)">Projects</button>
@@ -10,7 +10,7 @@
         @click="scrollTo(contact)">Contact</button>
     </div>
 
-    <div class="flex flex-col items-center main">
+    <div class="flex flex-col items-center">
       <section class="section about flex " ref="about">
         <AboutMeView />
       </section>
@@ -20,6 +20,10 @@
       <section class="section2 contact" ref="contact">
         <ContactView />
       </section>
+    </div>
+    <div class="p-5">
+      <hr class="border-b border-gray-700 mb-2">
+      <span class="ml-10 font-mono text-white text-sm">©joshuajpiluden {{ new Date().getFullYear() }}</span>
     </div>
   </main>
 </template>

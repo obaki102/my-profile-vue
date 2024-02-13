@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <RouterView />
-  <div class="flex bg-gray-800 p-5 h-14">
-    <span class="ml-10 font-mono text-white text-sm">©joshuajpiluden {{ new Date().getFullYear() }}</span>
-  </div>
 </template>
 
 <style scoped>

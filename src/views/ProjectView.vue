@@ -1,41 +1,11 @@
 <template>
-  <div class="mt-10 ml-20">
+  <div class="flex flex-wrap justify-center">
     <h1
       class="mb-10 text-4xl font-extrabold leading-none tracking-tight text-white">
       Projects</h1>
   </div>
-  <div class="flex flex-wrap justify-center mt-10 ml-20 mb-10 mr-20">
-    <!-- <div class="flex gap-4 transition duration-300 hover:scale-105 flex content-center xl:flex-row max-lg:flex-col max-lg:flex-row" v-for="proj in data" :key="proj.id">
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg m-4">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2 font-mono text-white">
-              <a :href="proj.html_url" class="no-underline hover:underline ml-2 text-ellipsis overflow-hidden">
-                {{ proj.name }}
-              </a>
-            </div>
-            <hr class="border-b border-gray-700 my-4">
-            <p class="text-ellipsis overflow-hidden  font-mono text-white text-sm">
-              {{ proj.description }}
-            </p>
-          </div>
-          <div v-if="proj.homepage">
-            <a :href="proj.homepage"> <button
-                class="no-underline hover:underline ml-4  font-mono text-white background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button">
-                site
-              </button>
-            </a>
-          </div>
-          <div class="px-6 pt-4 pb-2 ">
-            <span v-for="lang in proj.languages" :key="proj.id"
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{
-                lang
-              }}</span>
-          </div>
-        </div>
-      </div> -->
-
-    <div class="p-4 max-w-sm transition duration-300 hover:scale-105" v-for="proj in data" :key="proj.id">
+  <div class="flex flex-wrap justify-center">
+       <div class="p-4 max-w-sm transition duration-300 hover:scale-105" v-for="proj in data" :key="proj.id">
       <div class="flex rounded-lg h-full bg-gray-800 p-6 rounded-lg shadow-lg p-8 flex-col">
         <div class="flex items-center mb-3">
           <div
@@ -64,7 +34,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup lang="ts">
