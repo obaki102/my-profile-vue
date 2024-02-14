@@ -94,7 +94,7 @@ const ask = async () => {
     id: '1',
     sender: 'John',
     content: 'Hello, from userasdasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas?',
-    isTyping: false,
+    isTyping: true,
     timestamp: new Date(),
     isBot: true,
   });
@@ -110,7 +110,7 @@ const ask1 = async () => {
     content: 'Hello, from userasdasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas?',
     isTyping: false,
     timestamp: new Date(),
-    isBot: false,
+    isBot: true,
   });
   chats.push(bot);
 
