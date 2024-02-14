@@ -2,9 +2,9 @@
   <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
     <div>
       <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
-        <p class="text-sm">{{ userMessage.content }}</p>
+        <p class="text-sm">{{ chatMessage.content }}</p>
       </div>
-      <span class="text-xs text-gray-500 leading-none">{{ formatTimestamp(userMessage.timestamp) }}</span>
+      <span class="text-xs text-gray-500 leading-none">{{ formatTimestamp(chatMessage.timestamp) }}</span>
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@
 import type { ChatMessage } from '@/models/chatMessage';
 import { formatTimestamp } from '../services/utilities'
 defineProps<{
-  userMessage: ChatMessage;
+  chatMessage: ChatMessage;
 }>();
 
 

@@ -1,11 +1,13 @@
 <template>
   <div class="flex w-full mt-2 space-x-3 max-w-xs">
-    <img class="flex-shrink-0 h-10 w-10 rounded-full" src="/src/assets/obakibot.png" />
+    <img class="flex-shrink-0 h-10 w-10 rounded-full" src="/src/assets/obakibot.svg" />
     <div>
       <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
-        <p class="text-sm">{{ botMessage.content }}</p>
+        <span v-if="chatMessage.isTyping" class="typing-indicator"></span>
+        <span v-else class="text-sm">{{ chatMessage.content }}</span>
+        
       </div>
-      <span class="text-xs text-gray-500 leading-none">{{ formatTimestamp(botMessage.timestamp) }}</span>
+      <span class="text-xs text-gray-500 leading-none">{{ formatTimestamp(chatMessage.timestamp) }}</span>
     </div>
   </div>
 </template>
@@ -15,11 +17,37 @@ import type { ChatMessage } from '@/models/chatMessage';
 import { formatTimestamp } from '../services/utilities'
 
 defineProps<{
-  botMessage: ChatMessage;
+  chatMessage: ChatMessage;
 }>();
 
 </script>
 
 <style scoped>
-/* Add any scoped styles here */
-</style>
+.typing-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 12px;
+  background-color: #6b7280;
+  animation: typingAnimation 1s infinite;
+  margin-right: 4px;
+}
+
+@keyframes typingAnimation {
+
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+}</style>

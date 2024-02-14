@@ -49,8 +49,6 @@ projects
 */
 
 const data = ref([] as Project[])
-let isSuccess: boolean = false;
-
 
 onMounted(async () => {
   const projects = await getProjects();
