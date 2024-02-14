@@ -6,11 +6,16 @@
         <h2 class="text-sm font-semibold">obakibot</h2>
       </div>
       <!-- Header -->
-      <button @click="ask" class="m-3 p-2 bg-blue-500 text-white rounded-md">
-        Ask
-      </button>
+      <div class="flex flex-col">
+        <button @click="ask" class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
+          Tell me more about yourself ?
+        </button>
+        <button @click="ask1" class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
+          Tell me more about yourself user?
+        </button>
+      </div>
       <!-- Body -->
-      <div class="flex flex-col overflow-auto w-80 h-96 p-5">
+      <div class="flex flex-col overflow-x-hidden overflow-y-auto w-80 h-96 p-5">
         <div v-for="chat in chats" :key="chat.id">
           <component :chatMessage="chat" :is="chat.isBot ? BotMessage : UserMessage" />
         </div>
@@ -22,9 +27,9 @@
             class="flex items-center h-10 rounded px-3 text-sm resize-none overflow-y-auto text-gray-700 "
             placeholder="Type your message…" @input="checkTextAreaValidity" @keyup.enter="handleEnterKey"></textarea>
         </div>
-        <button v-if="isValidText" class="ml-2 px-3 py-1 rounded-full text-white bg-blue-400 hover:bg-blue-500">
+        <button v-if="isValidText" class="ml-3 px-3 py-1 rounded-full text-white bg-blue-400 hover:bg-blue-500">
 
-          <img class="w-3 h-3 m-1 " src="/src/assets/send.svg" />
+          <img class="w-2 h-2 m-1 " src="/src/assets/send.svg" />
         </button>
       </div>
     </div>
@@ -53,7 +58,7 @@ const chats = reactive([] as ChatMessage[]);
 const user = reactive<ChatMessage>({
   id: '1',
   sender: 'John',
-  content: 'Hello, from user?',
+  content: 'Hello, from userasdasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas?',
   timestamp: new Date(),
   isBot: false,
 });
@@ -67,10 +72,24 @@ const ask = async () => {
   const bot = reactive<ChatMessage>({
     id: '1',
     sender: 'John',
-    content: 'Hello,from bot?',
+    content: 'Hello, from userasdasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas?',
     isTyping: false,
     timestamp: new Date(),
     isBot: true,
+  });
+  chats.push(bot);
+  console.log(chats)
+
+};
+const ask1 = async () => {
+  const answer = await askChatGpt('Tell me about yourself?');
+  const bot = reactive<ChatMessage>({
+    id: '1',
+    sender: 'John',
+    content: 'Hello, from userasdasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas?',
+    isTyping: false,
+    timestamp: new Date(),
+    isBot: false,
   });
   chats.push(bot);
   console.log(chats)

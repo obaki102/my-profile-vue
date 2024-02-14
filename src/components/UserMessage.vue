@@ -1,7 +1,8 @@
 <template>
   <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
     <div>
-      <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+      <div
+        class="flex-initial  mt-4 max-w-56 bg-blue-600 text-white p-3 rounded-l-lg rounded-bl-lg rounded-br-lg break-words overflow-hidden text-left">
         <p class="text-sm">{{ chatMessage.content }}</p>
       </div>
       <span class="text-xs text-gray-500 leading-none">{{ formatTimestamp(chatMessage.timestamp) }}</span>
