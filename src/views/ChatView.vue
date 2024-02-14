@@ -15,7 +15,7 @@
         </button>
       </div>
       <!-- Body -->
-      <div class="flex flex-col overflow-x-hidden overflow-y-auto w-80 h-96 p-5">
+      <div class="flex flex-col overflow-x-hidden overflow-y-auto w-80 h-96 p-5" ref="scrollContainer">
         <div v-for="chat in chats" :key="chat.id">
           <component :chatMessage="chat" :is="chat.isBot ? BotMessage : UserMessage" />
         </div>
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch, onMounted, nextTick } from 'vue';
 import { askChatGpt } from '@/services/askChatGpt'
 import type { ChatMessage } from '@/models/chatMessage';
 import BotMessage from '../components/BotMessage.vue';
@@ -53,7 +53,21 @@ const showChat = ref(false);
 const message = ref('');
 const isValidText = ref(false);
 const chats = reactive([] as ChatMessage[]);
+const scrollContainer = ref<HTMLElement | null>(null);
 
+
+watch(
+  () => chats.length,
+  async () => {
+    await nextTick();
+    scrollDown();
+  }
+);
+
+onMounted(async () => {
+  await nextTick();
+  scrollDown();
+});
 
 const user = reactive<ChatMessage>({
   id: '1',
@@ -67,6 +81,13 @@ const toggleChat = () => {
   showChat.value = !showChat.value;
 };
 
+const scrollDown = () => {
+  const container = scrollContainer.value;
+  if (container) {
+    container.scrollTop = container.scrollHeight;
+  }
+};
+
 const ask = async () => {
   const answer = await askChatGpt('Tell me about yourself?');
   const bot = reactive<ChatMessage>({
@@ -78,7 +99,7 @@ const ask = async () => {
     isBot: true,
   });
   chats.push(bot);
-  console.log(chats)
+
 
 };
 const ask1 = async () => {
@@ -92,7 +113,7 @@ const ask1 = async () => {
     isBot: false,
   });
   chats.push(bot);
-  console.log(chats)
+
 
 };
 
@@ -106,3 +127,4 @@ const handleEnterKey = () => {
 
 
 </script>
+
