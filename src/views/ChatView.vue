@@ -24,7 +24,7 @@
           <component :chatMessage="chat" :is="chat.isBot ? BotMessage : UserMessage" />
         </div>
       </div>
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center" v-if="!hidePreQuestions">
         <button @click="initializeConversation('Tell me more about yourself ?')"
           class="my-1 p-3 bg-blue-500 text-white text-sm rounded-full">
           Tell me more about yourself ?
@@ -67,6 +67,7 @@ import { v4 as uuidv4 } from 'uuid';
 const showChat = ref(false);
 const message = ref('');
 const isValidText = ref(false);
+const hidePreQuestions = ref(false);
 const chats = reactive([] as ChatMessage[]);
 const formattedDateTime = ref('');
 const scrollContainer = ref<HTMLElement | null>(null);
@@ -91,8 +92,9 @@ onMounted(async () => {
   await asyncScrollDown();
 });
 
-const toggleChat = () => {
+const toggleChat = async () => {
   showChat.value = !showChat.value;
+  await asyncScrollDown();
 };
 
 
@@ -151,8 +153,10 @@ const sendMessage = async () => {
 };
 
 const initializeConversation = async (messageContent: string) => {
+  hidePreQuestions.value = true;
   addUserMessage(messageContent);
   await askBot(messageContent);
+ 
 };
 
 const checkTextAreaValidity = () => {
