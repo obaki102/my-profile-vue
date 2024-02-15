@@ -14,18 +14,20 @@
       <section class="section about flex " ref="about">
         <AboutMeView />
       </section>
-      <section class="section2" ref="projects">
+      <section class="section2 container no-scrollbar" ref="projects">
         <ProjectView />
       </section>
       <section class="section2 contact" ref="contact">
         <ContactView />
       </section>
+      <ChatView />
     </div>
     <div class="p-5">
       <hr class="border-b border-gray-700 mb-2">
       <span class="ml-10 font-mono text-white text-sm">©joshuajpiluden {{ new Date().getFullYear() }}</span>
     </div>
-  </main>
+   </main>
+ 
 </template>
 
 <script setup lang="ts">
@@ -33,7 +35,8 @@
 import AboutMeView from './AboutMeView.vue';
 import ContactView from './ContactView.vue';
 import ProjectView from './ProjectView.vue';
-import { ref, type Ref } from 'vue';
+import ChatView from './ChatView.vue';
+import { ref } from 'vue';
 
 const [about, projects, contact] = [ref<HTMLElement | null>(null), ref<HTMLElement | null>(null), ref<HTMLElement | null>(null)];
 
@@ -41,6 +44,10 @@ function scrollTo(view: HTMLElement | null) {
   if (view)
     view.scrollIntoView({ behavior: 'smooth' });
 }
+
+const showChat = ref(false);
+
+
 </script>
 
 <style>

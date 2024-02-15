@@ -1,10 +1,16 @@
 <template>
   <div class="flex flex-col p-20">
-    <div class="text-4xl font-extrabold leading-none tracking-tight text-white m-20">
-      <p>Hi 👋, I'm Josh</p>
+      <div class="text-2xl font-extrabold leading-none tracking-tight text-white mb-20 md:text-4xl">
+      <h1>
+        <span
+          className="inline-flex h-20 pt-2 overflow-x-hidden animate-type group-hover:animate-type-reverse whitespace-nowrap text-brand-accent will-change-transform">
+          Hi, I'm Josh 👋
+        </span>
+      </h1>
       <p>Just a regular .NET developer who loves exploring new stuff.</p>
     </div>
-    <div class="flex  flex-wrap ml-20">
+
+    <div class="flex  flex-wrap">
       <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/c-sharp.svg"
         title="C#" />
       <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/azure.svg"
@@ -23,4 +29,8 @@
 
 <script setup lang="ts">
 </script>
-<style></style>
+<style>
+.will-change-transform {
+  will-change: transform;
+}
+</style>
