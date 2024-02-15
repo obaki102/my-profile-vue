@@ -154,6 +154,7 @@ const initializeConversation = async (messageContent: string) => {
   addUserMessage(messageContent);
   await askBot(messageContent);
 };
+
 const checkTextAreaValidity = () => {
   isValidText.value = message.value.trim().length > 0;
 };
