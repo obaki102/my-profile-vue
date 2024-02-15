@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showChat">
+  <div v-if="showChat" class="max-sm:invisible">
     <div class="fixed flex-col items-center bottom-20 right-10 bg-white rounded-md">
       <div class="flex flex-row items-center bg-blue-500 text-white rounded-t-md h-10">
         <img class="flex-shrink-0 h-6 w-6 rounded-full m-2" src="/src/assets/obakibot.svg" />
@@ -24,6 +24,16 @@
           <component :chatMessage="chat" :is="chat.isBot ? BotMessage : UserMessage" />
         </div>
       </div>
+      <div class="flex flex-col items-center">
+        <button @click="initializeConversation('Tell me more about yourself ?')"
+          class="my-1 p-3 bg-blue-500 text-white text-sm rounded-full">
+          Tell me more about yourself ?
+        </button>
+        <button @click="initializeConversation('What are your skill ?')"
+          class="my-1 p-3 bg-blue-500 text-white text-sm rounded-full">
+          What are your skill?
+        </button>
+      </div>
       <!-- Chat -->
       <div class="flex flex-row items-center bg-gray-300 rounded-b-md p-2">
         <div class="relative">
@@ -38,7 +48,7 @@
       </div>
     </div>
   </div>
-  <div class="py-10">
+  <div class="py-10 max-sm:invisible">
     <button @click="toggleChat" :class="{ 'bg-blue-400': showChat, 'bg-gray-200': !showChat }"
       class="fixed bottom-5 right-10 p-2  rounded-md text-white focus:outline-none">
       <img class="w-7 h-7 m-1" src="/src/assets/obakibot.svg" />
@@ -69,16 +79,16 @@ watch(
 );
 
 onMounted(async () => {
-  await asyncScrollDown();
   const uniqueId = uuidv4();
   const initialMessage: ChatMessage = {
     id: uniqueId,
-    content: 'Hello! Thank you for taking the time to visit my site. If you are interested in learning more, please feel free to ask. Thank you very much!',
+    content: 'Hello! I appreciate your visit to my site. If there is anything you like to know more about me, please do not hesitate to ask. Thank you very much!',
     isTyping: false,
     timestamp: new Date(),
     isBot: true,
   };
   chats.push(initialMessage);
+  await asyncScrollDown();
 });
 
 const toggleChat = () => {
@@ -105,47 +115,48 @@ const askBot = async (message: string) => {
     isBot: true,
   };
 
-  // Add the initial entry to chats
   chats.push(bot);
 
   try {
-    // Fetch data from askChatGpt
     const answer = await askChatGpt(message);
-
-    // Find the entry in chats by id
     const existingEntryIndex = chats.findIndex(entry => entry.id === uniqueId);
 
-    // Update the entry if found
     if (existingEntryIndex !== -1) {
       const existingEntry = chats[existingEntryIndex];
       existingEntry.content = answer;
       existingEntry.isTyping = false;
     }
   } catch (error) {
-    // Handle error if askChatGpt fails
     console.error('Error fetching message from askChatGpt:', error);
   }
   await asyncScrollDown();
 };
 
-const sendMessage = async () => {
+const addUserMessage = (content: string) => {
   const uniqueId = uuidv4();
   const userMessage: ChatMessage = {
     id: uniqueId,
-    content: message.value,
+    content,
     isTyping: false,
     timestamp: new Date(),
     isBot: false,
   };
   chats.push(userMessage);
+};
+
+const sendMessage = async () => {
+  addUserMessage(message.value);
   await askBot(message.value);
   message.value = '';
-}
+};
 
+const initializeConversation = async (messageContent: string) => {
+  addUserMessage(messageContent);
+  await askBot(messageContent);
+};
 const checkTextAreaValidity = () => {
   isValidText.value = message.value.trim().length > 0;
 };
-
 
 
 onMounted(() => {
