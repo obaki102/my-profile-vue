@@ -139,6 +139,7 @@ const sendMessage = async () => {
   };
   chats.push(userMessage);
   await askBot(message.value);
+  message.value = '';
 }
 
 const checkTextAreaValidity = () => {
