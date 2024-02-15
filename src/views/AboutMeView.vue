@@ -1,12 +1,10 @@
 <template>
   <div class="flex flex-col p-20">
       <div class="text-2xl font-extrabold leading-none tracking-tight text-white mb-20 md:text-4xl">
-      <h1>
         <span
-          className="inline-flex h-20 pt-2 overflow-x-hidden animate-type group-hover:animate-type-reverse whitespace-nowrap text-brand-accent will-change-transform">
+          className="inline-flex pt-2 overflow-x-hidden animate-type group-hover:animate-type-reverse whitespace-nowrap text-brand-accent will-change-transform">
           Hi, I'm Josh 👋
         </span>
-      </h1>
       <p>Just a regular .NET developer who loves exploring new stuff.</p>
     </div>
 

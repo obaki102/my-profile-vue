@@ -9,7 +9,6 @@
         class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block rounded hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
         @click="scrollTo(contact)">Contact</button>
     </div>
-
     <div class="flex flex-col items-center">
       <section class="section about flex " ref="about">
         <AboutMeView />
