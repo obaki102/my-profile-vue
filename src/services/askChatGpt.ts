@@ -1,7 +1,6 @@
 import { ref } from 'vue';
 import type { GptRequest } from '@/models/gptRequest';
 export async function askChatGpt(question: string): Promise<string> {
-  return 'I am a seasoned developer with extensive experience in roles such as Senior Application Developer at IBM and Senior Software Engineer at Accenture. I have expertise in C#, Blazor, Power Platform, Azure, and various other technologies.'
   const responseData = ref<string>('');
   const requestData = ref<GptRequest>({} as GptRequest);
   requestData.value.question = question;

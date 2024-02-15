@@ -2,7 +2,7 @@
   <div class="flex w-full mt-2 space-x-3">
     <img class="flex-shrink-0 h-10 w-10 rounded-full" src="/src/assets/obakibot.svg" />
     <div class="flex flex-col">
-      <div class="chat-bubble" v-if="chatMessage.isTyping">
+      <div class="chat-bubble mt-4" v-if="chatMessage.isTyping">
         <div class="typing">
           <div class="dot"></div>
           <div class="dot"></div>
@@ -50,7 +50,7 @@ defineProps<{
 
 .typing .dot {
   animation: mercuryTypingAnimation 1.8s infinite ease-in-out;
-  background-color: #2b62c9; /* Blueish color like Facebook */
+  background-color: #2b62c9; 
   border-radius: 50%;
   height: 7px;
   margin-right: 4px;
@@ -78,19 +78,17 @@ defineProps<{
 @keyframes mercuryTypingAnimation {
   0% {
     transform: translateY(0px);
-    background-color: #4267b2; /* Darker blue color */
+    background-color: #486aad; 
   }
 
   28% {
     transform: translateY(-7px);
-    background-color: #5890cd; /* Medium blue color */
+    background-color: #5890cd; 
   }
 
   44% {
     transform: translateY(0px);
-    background-color: #6d9ac3; /* Light blue color */
+    background-color: #6d9ac3; 
   }
 }
-
-
 </style>

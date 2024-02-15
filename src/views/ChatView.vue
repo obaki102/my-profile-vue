@@ -6,16 +6,20 @@
         <h2 class="text-sm font-semibold">obakibot</h2>
       </div>
       <!-- Header -->
-      <div class="flex flex-col">
-        <button @click="ask" class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
+
+      <div class="flex flex-col items-center ">
+        <span class="m-2 text-sm text-gray-700">{{ formattedDateTime }}</span>
+        <!-- <button @click="askBot('Tell me more about yourself ?', true)"
+          class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
           Tell me more about yourself ?
         </button>
-        <button @click="ask1" class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
+        <button @click="askBot('Tell me more about yourself ?', false)"
+          class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
           Tell me more about yourself user?
-        </button>
+        </button> -->
       </div>
       <!-- Body -->
-      <div class="flex flex-col overflow-x-hidden overflow-y-auto w-80 h-96 p-5" ref="scrollContainer">
+      <div class="flex flex-col overflow-x-hidden overflow-y-auto w-96 h-96 p-5" ref="scrollContainer">
         <div v-for="chat in chats" :key="chat.id">
           <component :chatMessage="chat" :is="chat.isBot ? BotMessage : UserMessage" />
         </div>
@@ -23,12 +27,12 @@
       <!-- Chat -->
       <div class="flex flex-row items-center bg-gray-300 rounded-b-md p-2">
         <div class="relative">
-          <textarea v-model="message" :class="{ 'w-60': isValidText, 'w-72 ml-2': !isValidText }"
+          <textarea v-model="message" :class="{ 'ml-2 w-72': isValidText, 'w-72 ml-2': !isValidText }"
             class="flex items-center h-10 rounded px-3 text-sm resize-none overflow-y-auto text-gray-700 "
-            placeholder="Type your message…" @input="checkTextAreaValidity" @keyup.enter="handleEnterKey"></textarea>
+            placeholder="Type your message…" @input="checkTextAreaValidity"></textarea>
         </div>
-        <button v-if="isValidText" class="ml-3 px-3 py-1 rounded-full text-white bg-blue-400 hover:bg-blue-500">
-
+        <button v-if="isValidText" class="ml-5 px-3 py-1 rounded-full text-white bg-blue-400 hover:bg-blue-500"
+          @click="sendMessage" title="Send message.">
           <img class="w-2 h-2 m-1 " src="/src/assets/send.svg" />
         </button>
       </div>
@@ -48,83 +52,117 @@ import { askChatGpt } from '@/services/askChatGpt'
 import type { ChatMessage } from '@/models/chatMessage';
 import BotMessage from '../components/BotMessage.vue';
 import UserMessage from '../components/UserMessage.vue';
+import { v4 as uuidv4 } from 'uuid';
 
 const showChat = ref(false);
 const message = ref('');
 const isValidText = ref(false);
 const chats = reactive([] as ChatMessage[]);
+const formattedDateTime = ref('');
 const scrollContainer = ref<HTMLElement | null>(null);
-
 
 watch(
   () => chats.length,
   async () => {
-    await nextTick();
-    scrollDown();
+    await asyncScrollDown();
   }
 );
 
 onMounted(async () => {
-  await nextTick();
-  scrollDown();
-});
-
-const user = reactive<ChatMessage>({
-  id: '1',
-  sender: 'John',
-  content: 'Hello, from userasdasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas?',
-  timestamp: new Date(),
-  isBot: false,
+  await asyncScrollDown();
+  const uniqueId = uuidv4();
+  const initialMessage: ChatMessage = {
+    id: uniqueId,
+    content: 'Hello! Thank you for taking the time to visit my site. If you are interested in learning more, please feel free to ask. Thank you very much!',
+    isTyping: false,
+    timestamp: new Date(),
+    isBot: true,
+  };
+  chats.push(initialMessage);
 });
 
 const toggleChat = () => {
   showChat.value = !showChat.value;
 };
 
-const scrollDown = () => {
+
+const asyncScrollDown = async () => {
+  await nextTick();
   const container = scrollContainer.value;
   if (container) {
     container.scrollTop = container.scrollHeight;
   }
 };
 
-const ask = async () => {
-  const answer = await askChatGpt('Tell me about yourself?');
-  const bot = reactive<ChatMessage>({
-    id: '1',
-    sender: 'John',
-    content: 'Hello, from userasdasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas?',
+
+const askBot = async (message: string) => {
+  const uniqueId = uuidv4();
+  const bot: ChatMessage = {
+    id: uniqueId,
+    content: '',
     isTyping: true,
     timestamp: new Date(),
     isBot: true,
-  });
+  };
+
+  // Add the initial entry to chats
   chats.push(bot);
 
+  try {
+    // Fetch data from askChatGpt
+    const answer = await askChatGpt(message);
 
+    // Find the entry in chats by id
+    const existingEntryIndex = chats.findIndex(entry => entry.id === uniqueId);
+
+    // Update the entry if found
+    if (existingEntryIndex !== -1) {
+      const existingEntry = chats[existingEntryIndex];
+      existingEntry.content = answer;
+      existingEntry.isTyping = false;
+    }
+  } catch (error) {
+    // Handle error if askChatGpt fails
+    console.error('Error fetching message from askChatGpt:', error);
+  }
+  await asyncScrollDown();
 };
-const ask1 = async () => {
-  const answer = await askChatGpt('Tell me about yourself?');
-  const bot = reactive<ChatMessage>({
-    id: '1',
-    sender: 'John',
-    content: 'Hello, from userasdasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas?',
+
+const sendMessage = async () => {
+  const uniqueId = uuidv4();
+  const userMessage: ChatMessage = {
+    id: uniqueId,
+    content: message.value,
     isTyping: false,
     timestamp: new Date(),
-    isBot: true,
-  });
-  chats.push(bot);
-
-
-};
+    isBot: false,
+  };
+  chats.push(userMessage);
+  await askBot(message.value);
+}
 
 const checkTextAreaValidity = () => {
   isValidText.value = message.value.trim().length > 0;
 };
 
-const handleEnterKey = () => {
-  console.log("Enter key pressed. Do something!");
-}
 
+
+onMounted(() => {
+  updateFormattedDateTime();
+  setInterval(updateFormattedDateTime, 60000); // Update every minute
+});
+
+const updateFormattedDateTime = () => {
+  const now = new Date();
+  formattedDateTime.value = formatDateTime(now);
+};
+
+const formatDateTime = (date: Date) => {
+  const today = new Date();
+  const isToday = date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+  const timeString = date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  return isToday ? `Today ${timeString}` : date.toLocaleString();
+};
 
 </script>
 
