@@ -5,14 +5,14 @@
         class="flex-initial  mt-4 max-w-56 bg-blue-600 text-white p-3 rounded-l-lg rounded-bl-lg rounded-br-lg break-words overflow-hidden text-left">
         <p class="text-sm">{{ chatMessage.content }}</p>
       </div>
-      <span class="text-xs text-gray-500 leading-none">{{ formatTimestamp(chatMessage.timestamp) }}</span>
+      <ChatTimePassed :timestamp.date="chatMessage.timestamp" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { ChatMessage } from '@/models/chatMessage';
-import { formatTimestamp } from '../services/utilities'
+import ChatTimePassed from '../components/TimePassed.vue';
 defineProps<{
   chatMessage: ChatMessage;
 }>();

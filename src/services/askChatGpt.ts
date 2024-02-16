@@ -26,3 +26,29 @@ export async function askChatGpt(question: string): Promise<string> {
 };
 
 
+// export async function askChatGpt(question: string): Promise<string> {
+//   // Simulate a 5-second delay (5000 milliseconds) using native setTimeout
+//   await new Promise(resolve => setTimeout(resolve, 5000));
+
+//   // Array of random phrases
+//   const phrases: string[] = [
+//     'The quick brown fox jumps over the lazy dog.',
+//     'Coding is fun and challenging at the same time.',
+//     'Technology is constantly evolving.',
+//     'Keep calm and code on!',
+//     'A journey of a thousand miles begins with a single step.',
+//   ];
+
+//   // Select a random phrase
+//   const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+
+//   // Split the phrase into sentences
+//   const sentences = randomPhrase.split('.');
+
+//   // Take the first two sentences (or less if there are fewer than two)
+//   const result = sentences.slice(0, 2).join('.');
+
+//   return result;
+// };
+
+

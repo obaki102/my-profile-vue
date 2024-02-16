@@ -13,15 +13,14 @@
         class="flex-initial mt-4 max-w-56 bg-gray-300 p-3 rounded-r-lg rounded-bl-lg break-words overflow-hidden text-left">
         <span class="text-sm text-gray-900">{{ chatMessage.content }}</span>
       </div>
-      <span class="text-xs text-gray-500 leading-none mt-2">{{ formatTimestamp(chatMessage.timestamp) }}</span>
+      <ChatTimePassed :timestamp.date="chatMessage.timestamp" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { ChatMessage } from '@/models/chatMessage';
-import { formatTimestamp } from '../services/utilities'
-
+import ChatTimePassed from '../components/TimePassed.vue';
 defineProps<{
   chatMessage: ChatMessage;
 }>();
@@ -50,7 +49,7 @@ defineProps<{
 
 .typing .dot {
   animation: mercuryTypingAnimation 1.8s infinite ease-in-out;
-  background-color: #2b62c9; 
+  background-color: #2b62c9;
   border-radius: 50%;
   height: 7px;
   margin-right: 4px;
@@ -78,17 +77,17 @@ defineProps<{
 @keyframes mercuryTypingAnimation {
   0% {
     transform: translateY(0px);
-    background-color: #486aad; 
+    background-color: #486aad;
   }
 
   28% {
     transform: translateY(-7px);
-    background-color: #5890cd; 
+    background-color: #5890cd;
   }
 
   44% {
     transform: translateY(0px);
-    background-color: #6d9ac3; 
+    background-color: #6d9ac3;
   }
 }
 </style>

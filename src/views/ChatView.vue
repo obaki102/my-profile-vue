@@ -8,7 +8,7 @@
       <!-- Header -->
 
       <div class="flex flex-col items-center ">
-        <span class="m-2 text-sm text-gray-700">{{ formattedDateTime }}</span>
+        <span class="m-1 text-sm text-gray-700">{{ formattedDateTime }}</span>
         <!-- <button @click="askBot('Tell me more about yourself ?', true)"
           class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
           Tell me more about yourself ?
@@ -148,15 +148,16 @@ const addUserMessage = (content: string) => {
 
 const sendMessage = async () => {
   addUserMessage(message.value);
-  await askBot(message.value);
   message.value = '';
+  await askBot(message.value);
+
 };
 
 const initializeConversation = async (messageContent: string) => {
   hidePreQuestions.value = true;
   addUserMessage(messageContent);
   await askBot(messageContent);
- 
+
 };
 
 const checkTextAreaValidity = () => {
@@ -166,7 +167,7 @@ const checkTextAreaValidity = () => {
 
 onMounted(() => {
   updateFormattedDateTime();
-  setInterval(updateFormattedDateTime, 60000); // Update every minute
+  setInterval(updateFormattedDateTime, 30000); // Update every minute
 });
 
 const updateFormattedDateTime = () => {
