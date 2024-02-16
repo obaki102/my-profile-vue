@@ -9,29 +9,22 @@
 
       <div class="flex flex-col items-center ">
         <span class="m-1 text-sm text-gray-700">{{ formattedDateTime }}</span>
-        <!-- <button @click="askBot('Tell me more about yourself ?', true)"
-          class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
-          Tell me more about yourself ?
-        </button>
-        <button @click="askBot('Tell me more about yourself ?', false)"
-          class="m-3 p-2 bg-blue-500 text-white text-sm rounded-full">
-          Tell me more about yourself user?
-        </button> -->
       </div>
       <!-- Body -->
-      <div class="flex flex-col overflow-x-hidden overflow-y-auto w-96 h-96 p-5" ref="scrollContainer">
+      <div class="flex flex-col overflow-x-hidden overflow-y-auto w-96 h-96 p-5" ref="scrollContainer"
+        v-if="renderComponent">
         <div v-for="chat in chats" :key="chat.id">
           <component :chatMessage="chat" :is="chat.isBot ? BotMessage : UserMessage" />
         </div>
       </div>
       <div class="flex flex-col items-center" v-if="!hidePreQuestions">
-        <button @click="initializeConversation('Tell me more about yourself ?')"
+        <button @click="initializeConversation('Tell me more about yourself?')"
           class="my-1 p-3 bg-blue-500 text-white text-sm rounded-full">
           Tell me more about yourself ?
         </button>
-        <button @click="initializeConversation('What are your skill ?')"
+        <button @click="initializeConversation('What are your skills?')"
           class="my-1 p-3 bg-blue-500 text-white text-sm rounded-full">
-          What are your skill?
+          What are your skills ?
         </button>
       </div>
       <!-- Chat -->
@@ -60,8 +53,8 @@
 import { reactive, ref, watch, onMounted, nextTick } from 'vue';
 import { askChatGpt } from '@/services/askChatGpt'
 import type { ChatMessage } from '@/models/chatMessage';
-import BotMessage from '../components/BotMessage.vue';
-import UserMessage from '../components/UserMessage.vue';
+import BotMessage from '../components/chat/BotMessage.vue';
+import UserMessage from '../components/chat/UserMessage.vue';
 import { v4 as uuidv4 } from 'uuid';
 
 const showChat = ref(false);
@@ -71,10 +64,12 @@ const hidePreQuestions = ref(false);
 const chats = reactive([] as ChatMessage[]);
 const formattedDateTime = ref('');
 const scrollContainer = ref<HTMLElement | null>(null);
+const renderComponent = ref(true);
 
 watch(
   () => chats.length,
   async () => {
+    await forceRerender();
     await asyncScrollDown();
   }
 );
@@ -91,6 +86,12 @@ onMounted(async () => {
   chats.push(initialMessage);
   await asyncScrollDown();
 });
+
+const forceRerender = async () => {
+  renderComponent.value = false;
+  await nextTick();
+  renderComponent.value = true;
+};
 
 const toggleChat = async () => {
   showChat.value = !showChat.value;
@@ -167,7 +168,7 @@ const checkTextAreaValidity = () => {
 
 onMounted(() => {
   updateFormattedDateTime();
-  setInterval(updateFormattedDateTime, 30000); // Update every minute
+  setInterval(updateFormattedDateTime, 30000); // Update every 30s
 });
 
 const updateFormattedDateTime = () => {

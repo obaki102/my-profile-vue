@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import type { ChatMessage } from '@/models/chatMessage';
-import ChatTimePassed from '../components/TimePassed.vue';
+import ChatTimePassed from './TimePassed.vue';
 defineProps<{
   chatMessage: ChatMessage;
 }>();
