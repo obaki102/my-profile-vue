@@ -31,7 +31,7 @@
       <div class="flex flex-row items-center bg-gray-300 rounded-b-md p-2">
         <div class="relative">
           <textarea v-model="message" :class="{ 'ml-2 w-72': isValidText, 'w-72 ml-2': !isValidText }"
-            class="flex items-center h-10 rounded px-3 text-sm resize-none overflow-y-auto text-gray-700 "
+            class="flex items-center h-10 rounded px-3 text-sm resize-none overflow-y-auto text-gray-700"
             placeholder="Type your message…" @input="checkTextAreaValidity"></textarea>
         </div>
         <button v-if="isValidText" class="ml-5 px-3 py-1 rounded-full text-white bg-blue-400 hover:bg-blue-500"
@@ -43,7 +43,7 @@
   </div>
   <div class="py-10 max-sm:invisible">
     <button @click="toggleChat" :class="{ 'bg-blue-400': showChat, 'bg-gray-200': !showChat }"
-      class="fixed bottom-5 right-10 p-2  rounded-md text-white focus:outline-none">
+      class="fixed bottom-5 right-10 p-2  rounded-md text-white focus:outline-none hover:bg-blue-400 border-solid border-2 border-gray-900">
       <img class="w-7 h-7 m-1" src="/src/assets/obakibot.svg" />
     </button>
   </div>
