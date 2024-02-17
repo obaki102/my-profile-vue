@@ -125,7 +125,6 @@ const askBot = async (message: string) => {
   chats.push(bot);
   const existingEntryIndex = chats.findIndex(entry => entry.id === uniqueId);
   if (tooManyQuestion(message)) {
-    console.log(message.length)
     if (existingEntryIndex !== -1) {
       const existingEntry = chats[existingEntryIndex];
       existingEntry.isTyping = false;
