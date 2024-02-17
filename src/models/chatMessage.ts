@@ -3,5 +3,7 @@ export interface ChatMessage {
   content: string;
   timestamp: Date;
   isTyping?: boolean;
+  isError?: boolean;
+  errorMessage: string;
   isBot?: boolean;
 }

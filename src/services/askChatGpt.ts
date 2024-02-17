@@ -1,32 +1,47 @@
-import { ref } from 'vue';
-import type { GptRequest } from '@/models/gptRequest';
-export async function askChatGpt(question: string): Promise<string> {
-  const responseData = ref<string>('');
-  const requestData = ref<GptRequest>({} as GptRequest);
-  requestData.value.question = question;
+import type { GptRequest, GptResponse } from '@/models/chatTypes';
+
+export async function askChatGpt(question: string): Promise<GptResponse> {
+  const requestData: GptRequest = { question };
+  let errorMessage: string = '';
   try {
     const response = await fetch('https://obaki-webapi.onrender.com/ask-chatgpt-bot', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestData.value)
+      body: JSON.stringify(requestData)
     });
+
     if (response.ok) {
       const apiResponse: string = await response.text();
-      responseData.value = apiResponse;
+      const successResponse: GptResponse = {
+        answer: apiResponse,
+        error: {
+          isError: false,
+          errorMessage: ''
+        }
+      };
+      return successResponse;
     } else {
-      console.error(`Error fetching data. Status: ${response.status}`);
+      errorMessage = `Error fetching data. Status: ${response.status}`;
     }
   } catch (error) {
     console.error('Error fetching data:', error);
+    errorMessage = `Error fetching data. Status: ${error}`;
   }
 
-  return responseData.value;
+  const invalidResponse: GptResponse = {
+    answer: '',
+    error: {
+      isError: true,
+      errorMessage: errorMessage
+    }
+  };
+  return invalidResponse;
 };
 
 
-// export async function askChatGpt(question: string): Promise<string> {
+// export async function askChatGpt(question: string): Promise<GptResponse> {
 //   // Simulate a 5-second delay (5000 milliseconds) using native setTimeout
 //   await new Promise(resolve => setTimeout(resolve, 5000));
 
@@ -48,7 +63,15 @@ export async function askChatGpt(question: string): Promise<string> {
 //   // Take the first two sentences (or less if there are fewer than two)
 //   const result = sentences.slice(0, 2).join('.');
 
-//   return result;
+//    const response: GptResponse = {
+//     answer: result,
+//     error: {
+//       isError: false,
+//       errorMessage: ''
+//     }
+//   };
+
+//   return response;
 // };
 
 

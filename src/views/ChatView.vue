@@ -80,8 +80,10 @@ onMounted(async () => {
     id: uniqueId,
     content: 'Hello! I appreciate your visit to my site. If there is anything you like to know more about me, please do not hesitate to ask. Thank you very much!',
     isTyping: false,
+    isError: false,
     timestamp: new Date(),
     isBot: true,
+    errorMessage: ''
   };
   chats.push(initialMessage);
   await asyncScrollDown();
@@ -113,44 +115,74 @@ const askBot = async (message: string) => {
   const bot: ChatMessage = {
     id: uniqueId,
     content: '',
+    isError: false,
     isTyping: true,
     timestamp: new Date(),
     isBot: true,
+    errorMessage: ''
   };
 
   chats.push(bot);
+  const existingEntryIndex = chats.findIndex(entry => entry.id === uniqueId);
+  if (tooManyQuestion(message)) {
+    console.log(message.length)
+    if (existingEntryIndex !== -1) {
+      const existingEntry = chats[existingEntryIndex];
+      existingEntry.isTyping = false;
+      existingEntry.isError = true;
+      existingEntry.errorMessage = 'Ah, sorry about that! Its a bit of a bummer, but Im sticking to the minimum tokens. Would you mind making your question a little shorter?';
+      return;
+    }
+  }
 
   try {
-    const answer = await askChatGpt(message);
+    const response = await askChatGpt(message);
+    if (existingEntryIndex !== -1) {
+      const existingEntry = chats[existingEntryIndex];
+      existingEntry.isTyping = false;
+      if (!response.error.isError) {
+        existingEntry.content = response.answer;
+      } else {
+        existingEntry.errorMessage = response.error.errorMessage;
+        existingEntry.isError = true;
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching message from askChatGpt:', error);
     const existingEntryIndex = chats.findIndex(entry => entry.id === uniqueId);
 
     if (existingEntryIndex !== -1) {
       const existingEntry = chats[existingEntryIndex];
-      existingEntry.content = answer;
+      existingEntry.errorMessage = `Error fetching message from askChatGpt`;
       existingEntry.isTyping = false;
+      existingEntry.isError = true;
     }
-  } catch (error) {
-    console.error('Error fetching message from askChatGpt:', error);
   }
+
   await asyncScrollDown();
 };
+const tooManyQuestion = (str: string): boolean => {
+  return str.length > 150;
+}
 
 const addUserMessage = (content: string) => {
   const uniqueId = uuidv4();
   const userMessage: ChatMessage = {
     id: uniqueId,
     content,
+    isError: false,
     isTyping: false,
     timestamp: new Date(),
     isBot: false,
+    errorMessage: ''
   };
   chats.push(userMessage);
 };
 
 const sendMessage = async () => {
   addUserMessage(message.value);
-  message.value = '';
   await askBot(message.value);
+  message.value = '';
 
 };
 

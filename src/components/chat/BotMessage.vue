@@ -9,7 +9,11 @@
           <div class="dot"></div>
         </div>
       </div>
-      <div v-else
+      <div v-if="chatMessage.isError && !chatMessage.isTyping"
+        class="flex-initial mt-4 max-w-56 bg-red-300 p-3 rounded-r-lg rounded-bl-lg break-words overflow-hidden text-left">
+        <span class="text-sm text-red-900">{{ chatMessage.errorMessage }}</span>
+      </div>
+      <div v-if="chatMessage.content"
         class="flex-initial mt-4 max-w-56 bg-gray-300 p-3 rounded-r-lg rounded-bl-lg break-words overflow-hidden text-left">
         <span class="text-sm text-gray-900">{{ chatMessage.content }}</span>
       </div>
