@@ -5,7 +5,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import App from './App.vue';
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import './index.css';
 import router from './router';
 
@@ -20,8 +19,8 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
-const firebaseApp = initializeApp(firebaseConfig);
-getAnalytics(firebaseApp);
+
+initializeApp(firebaseConfig);
 const app = createApp(App);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(createPinia());

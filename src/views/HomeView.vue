@@ -39,7 +39,6 @@ import ContactView from './ContactView.vue';
 import ProjectView from './ProjectView.vue';
 import ChatView from './ChatView.vue';
 
-
 const [about, projects, contact] = [ref<HTMLElement | null>(null), ref<HTMLElement | null>(null), ref<HTMLElement | null>(null)];
 const showText = ref(false);
 onMounted(() => {
@@ -47,7 +46,6 @@ onMounted(() => {
     showText.value = true;
   }, 1000);
 });
-
 
 function scrollTo(view: HTMLElement | null) {
   if (view)

@@ -18,13 +18,13 @@
         </div>
       </div>
       <div class="flex flex-col items-center" v-if="!hidePreQuestions">
-        <button @click="initializeConversation('Tell me more about yourself?')"
+        <button @click="initializeConversation('Tell me more about Josh?')"
           class="my-1 p-3 bg-blue-500 text-white text-sm rounded-full">
-          Tell me more about yourself ?
+          Tell me more about Josh ?
         </button>
-        <button @click="initializeConversation('What are your skills?')"
+        <button @click="initializeConversation('What are Josh skills?')"
           class="my-1 p-3 bg-blue-500 text-white text-sm rounded-full">
-          What are your skills ?
+          What are Josh's skills?
         </button>
       </div>
       <!-- Chat -->
