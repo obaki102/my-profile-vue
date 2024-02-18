@@ -78,7 +78,7 @@ onMounted(async () => {
   const uniqueId = uuidv4();
   const initialMessage: ChatMessage = {
     id: uniqueId,
-    content: 'Hello! I appreciate your visit to my site. If there is anything you like to know more about me, please do not hesitate to ask. Thank you very much!',
+    content: "Hey there! I'm obakibot, your friendly chatbot with a flair for humor and a passion for all things josh-related. I'm here to share knowledge, answer questions, and sprinkle some laughter along the way!",
     isTyping: false,
     isError: false,
     timestamp: new Date(),
