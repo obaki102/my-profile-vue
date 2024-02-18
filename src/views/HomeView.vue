@@ -12,16 +12,17 @@
 
     <div class="fullpage-slide home">
       <div class="slide-content ">
-        <AboutMeView />
+        <transition enter-active-class="transition duration-1000" enter-from-class="opacity-0"
+          enter-to-class="opacity-100 animate-fade-in-smoke">
+           <AboutMeView v-if="showText"></AboutMeView>
+        </transition>
       </div>
     </div>
-
     <div class="fullpage-slide project">
       <div class="slide-content">
         <ProjectView />
       </div>
     </div>
-
     <div class="fullpage-slide">
       <div class="slide-content bg-gray-100">
         <ContactView />
@@ -32,15 +33,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import AboutMeView from './AboutMeView.vue';
 import ContactView from './ContactView.vue';
 import ProjectView from './ProjectView.vue';
 import ChatView from './ChatView.vue';
 
-let currentSlide = ref(0);
 
 const [about, projects, contact] = [ref<HTMLElement | null>(null), ref<HTMLElement | null>(null), ref<HTMLElement | null>(null)];
+const showText = ref(false);
+onMounted(() => {
+  setTimeout(() => {
+    showText.value = true;
+  }, 1000);
+});
+
 
 function scrollTo(view: HTMLElement | null) {
   if (view)
@@ -79,5 +86,29 @@ function scrollTo(view: HTMLElement | null) {
 
 .contact {
   background-color: #ffed4a;
+}
+
+.animate-fade-in-smoke {
+  animation: fade-in-smoke 1s ease-out forwards;
+}
+
+@keyframes fade-in-smoke {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: blur(10px);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
 }
 </style>
