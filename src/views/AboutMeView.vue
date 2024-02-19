@@ -9,18 +9,30 @@
     </div>
 
     <div class="flex  flex-wrap">
-      <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/c-sharp.svg"
-        title="C#" />
-      <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/azure.svg"
-        title="Azure" />
-      <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/dotnet.svg"
-        title=".NET" />
-      <img class="object-cover h-10 w-10 mr-5 transition duration-300 hover:translate-x-2"
-        src="/src/assets/PowerApps_scalable.svg" title="Power Apps" />
-      <img class="object-cover h-10 w-10 mr-5 transition duration-300 hover:translate-x-2"
-        src="/src/assets/PowerAutomate_scalable.svg" title="Power Automate" />
-      <img class="object-cover h-10 w-10 transition duration-300 hover:translate-x-2"
-        src="/src/assets/PowerBI_scalable.svg" title="Power BI" />
+      <div class="skill animate">
+        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/c-sharp.svg"
+          title="C#" />
+      </div>
+      <div class="skill animate">
+        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/azure.svg"
+          title="Azure" />
+      </div>
+      <div class="skill animate">
+        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/dotnet.svg"
+          title=".NET" />
+      </div>
+      <div class="skill animate">
+        <img class="object-cover h-10 w-10 mr-5 transition duration-300 hover:translate-x-2"
+          src="/src/assets/PowerApps_scalable.svg" title="Power Apps" />
+      </div>
+      <div class="skill animate">
+        <img class="object-cover h-10 w-10 mr-5 transition duration-300 hover:translate-x-2"
+          src="/src/assets/PowerAutomate_scalable.svg" title="Power Automate" />
+      </div>
+      <div class="skill animate">
+        <img class="object-cover h-10 w-10 transition duration-300 hover:translate-x-2"
+          src="/src/assets/PowerBI_scalable.svg" title="Power BI" />
+      </div>
     </div>
   </div>
 </template>
@@ -30,5 +42,51 @@
 <style>
 .will-change-transform {
   will-change: transform;
+}
+
+.skill {
+  opacity: 0;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate:nth-child(1) {
+  animation: slide-in 2s forwards;
+  animation-delay: 0s;
+}
+
+.animate:nth-child(2) {
+  animation: slide-in 2s forwards;
+  animation-delay: 0.5s;
+}
+
+.animate:nth-child(3) {
+  animation: slide-in 2s forwards;
+  animation-delay: 1s;
+}
+
+.animate:nth-child(4) {
+  animation: slide-in 2s forwards;
+  animation-delay: 1.5s;
+}
+
+.animate:nth-child(5) {
+  animation: slide-in 2s forwards;
+  animation-delay: 2s;
+}
+
+.animate:nth-child(6) {
+  animation: slide-in 2s forwards;
+  animation-delay: 2.5s;
 }
 </style>
