@@ -4,7 +4,7 @@ export async function askChatGpt(question: string): Promise<GptResponse> {
   const requestData: GptRequest = { question };
   let errorMessage: string = '';
   try {
-    const response = await fetch('https://obaki-webapi.onrender.com/ask-chatgpt-bot', {
+    const response = await fetch(import.meta.env.VITE_ASK_CHAT_GPT_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
