@@ -8,32 +8,41 @@
       class="text-2xl font-extrabold leading-none tracking-tight text-white text-center block rounded hover:border-gray-200 hover:bg-gray-800 py-2 px-4"
       @click="scrollTo(contact)">Contact</button>
   </div> -->
-  <div class="fullpage-container">
+  <!-- <div class="fullpage-container">
 
-    <div class="fullpage-slide home">
-      <div class="slide-content ">
+    <div class="fullpage-slide home hide">
+      <div class="slide-content">
         <transition enter-active-class="transition duration-1000" enter-from-class="opacity-0"
-          enter-to-class="opacity-100 animate-fade-in-smoke">
-           <AboutMeView v-if="showText"></AboutMeView>
+          enter-to-class="opacity-100 ">
+          <AboutMeView v-if="showText"></AboutMeView>
         </transition>
+        <AboutMeView></AboutMeView>
       </div>
     </div>
     <div class="fullpage-slide project">
-      <div class="slide-content">
+      <div class="slide-content" ref="elements">
         <ProjectView />
       </div>
     </div>
     <div class="fullpage-slide">
-      <div class="slide-content bg-gray-100">
+      <div class="slide-content bg-gray-100" ref="elements">
         <ContactView />
       </div>
     </div>
     <ChatView />
-  </div>
+  </div> -->
+
+  <section class="hide home">
+    <AboutMeView></AboutMeView>
+  </section>
+
+  <section class="hide project">
+    <ProjectView></ProjectView>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { reactive, ref, onMounted, onUnmounted } from 'vue';
 import AboutMeView from './AboutMeView.vue';
 import ContactView from './ContactView.vue';
 import ProjectView from './ProjectView.vue';
@@ -51,6 +60,51 @@ function scrollTo(view: HTMLElement | null) {
   if (view)
     view.scrollIntoView({ behavior: 'smooth' });
 }
+
+const elements = reactive([]);
+let observer: any = (null);
+
+const checkIntersection = (entries: any) => {
+  entries.forEach((entry: any) => {
+    if (entry.isIntersecting) {
+      console.log('intersect')
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
+    }
+  });
+};
+
+onMounted(() => {
+  observer = new IntersectionObserver(checkIntersection);
+  // elements.forEach((element: any) => {
+  //   if (element) {
+  //     console.log(element)
+  //     observer.observe(element);
+  //   }
+  // });
+  const hiddenElements = document.querySelectorAll('.hide');
+  hiddenElements.forEach(element => {
+    if (element) {
+      console.log(element)
+      observer.observe(element);
+    }
+  });
+});
+
+
+onUnmounted(() => {
+  const hiddenElements = document.querySelectorAll('.hide');
+  if (observer) {
+    hiddenElements.forEach(element => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    });
+    observer.disconnect();
+  }
+});
+
 </script>
 
 <style scoped>
@@ -108,5 +162,30 @@ function scrollTo(view: HTMLElement | null) {
     transform: scale(1);
     filter: blur(0);
   }
+}
+
+.hide {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+
+@media (prefers-rediced-motion) {
+  .hide {
+    transition: none;
+  }
+}
+
+.show {
+  opacity: 1;
+  animation: fade-in-smoke 1s ease-out forwards;
+}
+
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
 }
 </style>
