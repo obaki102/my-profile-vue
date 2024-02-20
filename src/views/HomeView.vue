@@ -32,11 +32,11 @@
     <ChatView />
   </div> -->
 
-  <section class="hide home">
+  <section class="hide11 home">
     <AboutMeView></AboutMeView>
   </section>
 
-  <section class="hide project">
+  <section class="hide11 project">
     <ProjectView></ProjectView>
   </section>
 </template>
@@ -70,6 +70,7 @@ const checkIntersection = (entries: any) => {
       console.log('intersect')
       entry.target.classList.add('show');
     } else {
+      console.log('removed')
       entry.target.classList.remove('show');
     }
   });
@@ -83,7 +84,7 @@ onMounted(() => {
   //     observer.observe(element);
   //   }
   // });
-  const hiddenElements = document.querySelectorAll('.hide');
+  const hiddenElements = document.querySelectorAll('.hide11');
   hiddenElements.forEach(element => {
     if (element) {
       console.log(element)
@@ -94,7 +95,7 @@ onMounted(() => {
 
 
 onUnmounted(() => {
-  const hiddenElements = document.querySelectorAll('.hide');
+  const hiddenElements = document.querySelectorAll('.hide11');
   if (observer) {
     hiddenElements.forEach(element => {
       if (element) {
@@ -164,18 +165,11 @@ onUnmounted(() => {
   }
 }
 
-.hide {
+.hide11 {
   opacity: 0;
-  filter: blur(5px);
-  transform: translateX(-100%);
-  transition: all 1s;
-}
+ }
 
-@media (prefers-rediced-motion) {
-  .hide {
-    transition: none;
-  }
-}
+
 
 .show {
   opacity: 1;
