@@ -1,6 +1,6 @@
 import { useFetch } from '@vueuse/core';
 import type { Project } from '@/models/projects';
-import { getCacheData } from '@/services/getCacheData'
+import { getCacheData } from 'obaki-get-cache-data'
 
 export async function getProjects() {
 
@@ -15,7 +15,7 @@ export async function getProjects() {
     return projects;
   };
 
-  return getCacheData('projects', fetchListDataIfNeeded);
+  return getCacheData('projects', fetchListDataIfNeeded,7);
 }
 
 async function getLanguagesForProject(proj: Project): Promise<string[]> {
