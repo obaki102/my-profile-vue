@@ -10,28 +10,32 @@
 
     <div class="flex  flex-wrap">
       <div class="skill animate">
-        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/c-sharp.svg"
+        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/skill-logo/c-sharp.svg"
           title="C#" />
       </div>
       <div class="skill animate">
-        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/azure.svg"
+        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/skill-logo/azure.svg"
           title="Azure" />
       </div>
       <div class="skill animate">
-        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/dotnet.svg"
+        <img class="object-fill h-10 w-10 mr-5 transition duration-300 hover:translate-x-2" src="/src/assets/skill-logo/dotnet.svg"
           title=".NET" />
       </div>
       <div class="skill animate">
         <img class="object-cover h-10 w-10 mr-5 transition duration-300 hover:translate-x-2"
-          src="/src/assets/PowerApps_scalable.svg" title="Power Apps" />
+          src="/src/assets/skill-logo/power-apps.svg" title="Power Apps" />
       </div>
       <div class="skill animate">
         <img class="object-cover h-10 w-10 mr-5 transition duration-300 hover:translate-x-2"
-          src="/src/assets/PowerAutomate_scalable.svg" title="Power Automate" />
+          src="/src/assets/skill-logo/power-automate.svg" title="Power Automate" />
+      </div>
+      <div class="skill animate">
+        <img class="object-cover h-10 w-10 mr-5 transition duration-300 hover:translate-x-2"
+          src="/src/assets/skill-logo/power-bi.svg" title="Power BI" />
       </div>
       <div class="skill animate">
         <img class="object-cover h-10 w-10 transition duration-300 hover:translate-x-2"
-          src="/src/assets/PowerBI_scalable.svg" title="Power BI" />
+          src="/src/assets/skill-logo/vue-js.svg" title="Vue Js" />
       </div>
     </div>
   </div>
@@ -88,5 +92,9 @@
 .animate:nth-child(6) {
   animation: slide-in 2s forwards;
   animation-delay: 2.5s;
+}
+.animate:nth-child(7) {
+  animation: slide-in 2s forwards;
+  animation-delay: 3s;
 }
 </style>
