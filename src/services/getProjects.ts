@@ -15,7 +15,7 @@ export async function getProjects() {
     return projects;
   };
 
-  return getEncryptedCacheData('projects', fetchListDataIfNeeded,import.meta.env.VITE_ENCRYPTION_KEY,7);
+  return getEncryptedCacheData('projects-encrypted', fetchListDataIfNeeded,import.meta.env.VITE_ENCRYPTION_KEY,7);
 }
 
 async function getLanguagesForProject(proj: Project): Promise<string[]> {
