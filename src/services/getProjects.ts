@@ -1,6 +1,6 @@
 import { useFetch } from '@vueuse/core';
 import type { Project } from '@/models/projects';
-import { getEncryptedCacheData  } from 'obaki-get-cache-data'
+import { getEncryptedCacheData  }  from 'obaki-local-storage';
 
 export async function getProjects() {
 
