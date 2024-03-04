@@ -1,6 +1,6 @@
 import { useFetch } from '@vueuse/core';
 import type { Project } from '@/models/projects';
-import { getCacheData } from 'obaki-get-cache-data'
+import { getEncryptedCacheData  } from 'obaki-get-cache-data'
 
 export async function getProjects() {
 
@@ -15,7 +15,7 @@ export async function getProjects() {
     return projects;
   };
 
-  return getCacheData('projects', fetchListDataIfNeeded,7);
+  return getEncryptedCacheData('projects', fetchListDataIfNeeded,import.meta.env.VITE_ENCRYPTION_KEY,7);
 }
 
 async function getLanguagesForProject(proj: Project): Promise<string[]> {

@@ -27,8 +27,6 @@ function generateUniqueId() {
   return uuidv4(); 
 }
 
-
-
 </script>
 
 <template>
