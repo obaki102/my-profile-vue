@@ -3,7 +3,7 @@
     <!-- Card component -->
     <div class="p-4 max-w-sm transition duration-300 hover:scale-105 hidden 2xl:block" v-for="proj in data"
       :key="proj.id">
-      <div class="flex rounded-2xl h-full bg-gray-800 p-6 rounded-2xl shadow-2xl p-8 flex-col">
+      <div class="flex rounded-2xl h-full bg-gray-800 p-6 rounded-2xl shadow-md p-8 flex-col">
         <div class="flex items-center mb-3">
           <div
             class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-gray-800 text-gray-200 flex-shrink-0">
