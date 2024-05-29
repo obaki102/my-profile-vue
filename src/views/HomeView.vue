@@ -10,7 +10,7 @@
   </div> -->
   <div class="fullpage-container">
 
-    <div class="fullpage-slide home">
+    <div class="home">
       <div class="slide-content ">
         <transition enter-active-class="transition duration-1000" enter-from-class="opacity-0"
           enter-to-class="opacity-100 animate-fade-in-smoke">
@@ -18,12 +18,12 @@
         </transition>
       </div>
     </div>
-    <div class="fullpage-slide project">
+    <div class="project">
       <div class="slide-content">
         <ProjectView />
       </div>
     </div>
-    <div class="fullpage-slide">
+    <div>
       <div class="slide-content bg-gray-100">
         <ContactView />
       </div>
